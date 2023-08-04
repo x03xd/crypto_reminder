@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+
+.main-container {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 1.5fr 4.5fr 1fr 2.5fr;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7.5rem;
+}
+
+
+button {
+    width: 10rem;
+    height: 4.5rem;
+    font-weight: 600;
+    border-radius: 0.3rem;
+}
+
+
+.default-red {
+    background-color: red;
+}
+
+
+.control-container-activities {
+    background-color: rgb(221, 219, 219);
+}
+
+
+
+.control-container-characters {
+
+}
+
+
+.control-container-sort {
+}
