@@ -1,6 +1,5 @@
 
 
-<<<<<<< HEAD
 class StrategySort {
 
     constructor(){
@@ -19,15 +18,6 @@ export class SortingByAlpha extends StrategySort {
     
     sort(sort_type) {
         const imagesArray = Array.from(this.imageContainer.getElementsByTagName("img"));
-=======
-export class StrategyByFrequency {
-    
-
-    sort(characters, sort_type) {
-
-        const imageContainer = document.querySelector(".image-container");
-        const imagesArray = Array.from(imageContainer.getElementsByTagName("img"));
->>>>>>> cd2cf124edcd69f23e5a21091e280a178698894c
 
         imagesArray.sort((a, b) => {
             const classA = a.className;
