@@ -10,8 +10,6 @@ class StrategySort {
     sort(){}
 
     add() {
-
-        console.log("xddd")
         this.imageContainer.innerHTML = "";
 
         for (const image of this.imagesArray) {
