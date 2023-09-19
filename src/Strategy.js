@@ -4,7 +4,7 @@ class StrategySort {
 
     constructor(){
         this.imageContainer = document.querySelector(".image-container");
-        this.imagesArray = null;
+        this.imagesArray = [];
     }
 
     sort(){}
