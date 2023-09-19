@@ -5,7 +5,7 @@ const factory = new Factory();
 
 
 const validate = (character) => {
-    const maxCharacters = 5;
+    const maxCharacters = 7;
 
     if(Subject.observers.length + 1 > maxCharacters) {
         alert("The maximum number of characters is five")

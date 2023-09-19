@@ -1,39 +1,20 @@
-
+import {Subject} from './Subject.js';
 
 class StrategySort {
 
     constructor(){
         this.imageContainer = document.querySelector(".image-container");
+        this.imagesArray = null;
     }
 
     sort(){}
 
+    add() {
 
-    add(){}
-
-}
-
-
-export class SortingByAlpha extends StrategySort {
-    
-    sort(sort_type) {
-        const imagesArray = Array.from(this.imageContainer.getElementsByTagName("img"));
-
-        imagesArray.sort((a, b) => {
-            const classA = a.className;
-            const classB = b.className;
-
-            return sort_type === "standard" ? classA.localeCompare(classB) : classB.localeCompare(classA);
-        });
-
-        if(imagesArray.length !== 0) this.add(imagesArray)
-    }
-
-
-    add(imagesArray) {
+        console.log("xddd")
         this.imageContainer.innerHTML = "";
 
-        for (const image of imagesArray) {
+        for (const image of this.imagesArray) {
             this.imageContainer.appendChild(image);
         }
     }
@@ -41,34 +22,54 @@ export class SortingByAlpha extends StrategySort {
 }
 
 
-
-
 export class SortingByAlpha extends StrategySort {
     
-    sort(sort_type) {
-        const imagesArray = Array.from(this.imageContainer.getElementsByTagName("img"));
+    sort(sort_type, chained=false) {
+        this.imagesArray = Array.from(this.imageContainer.getElementsByTagName("img"));
 
-        imagesArray.sort((a, b) => {
+        this.imagesArray.sort((a, b) => {
             const classA = a.className;
             const classB = b.className;
 
-            return sort_type === "standard" ? classA.localeCompare(classB) : classB.localeCompare(classA);
+            if(sort_type === "standard")
+                return classA.localeCompare(classB)
+                
+            return classB.localeCompare(classA)
         });
 
-        if(imagesArray.length !== 0) this.add(imagesArray)
-    }
+        if(!chained && this.imagesArray.length !== 0) this.add()
 
-
-    add(imagesArray) {
-        this.imageContainer.innerHTML = "";
-
-        for (const image of imagesArray) {
-            this.imageContainer.appendChild(image);
-        }
     }
 
 }
 
 
+export class SortingByFrequency extends StrategySort {
 
+    constructor(parent){
+        super(parent);
+        self.alpha = new SortingByAlpha()
+    }
 
+    sort(sort_type) {
+
+        self.alpha.sort(sort_type, true)
+
+        this.imagesArray = Array.from(this.imageContainer.getElementsByTagName("img"));
+        const frequencyMap = Subject.frequencyMap
+
+        this.imagesArray.sort((a, b) => {
+            const classA = a.className;
+            const classB = b.className;
+
+            if(sort_type === "standard")
+                return frequencyMap[classA] - frequencyMap[classB]
+
+            return frequencyMap[classB] - frequencyMap[classA]
+        });
+
+        if(this.imagesArray.length !== 0) this.add()
+ 
+    }
+
+}
